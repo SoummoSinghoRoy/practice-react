@@ -18,7 +18,7 @@ export class Books extends Component {
         })
       }
 
-      changeHandler = (name, id) =>{
+      changeHandler = (name,id) =>{
         let newBook = this.state.books.map( book =>{
           if (id === book.id) {
             return {

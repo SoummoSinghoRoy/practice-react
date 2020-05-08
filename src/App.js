@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Books from './Components/Books';
-import Data from './Components/Data';
-import Form from './Components/Form';
+import Books from './components/Books';
+import Data from './components/Data';
+import Form from './components/Form';
 // import UserTable from './Components/UserTable';
 
 class App extends Component {

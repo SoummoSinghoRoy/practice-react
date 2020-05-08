@@ -8,7 +8,7 @@ class Form extends Component {
     gender: '',
     skills: []
   }
-
+  
   changeHandler = event =>{
     if (event.target.type === 'checkbox') {
       if (event.target.checked) {

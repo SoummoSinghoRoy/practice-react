@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
+import { getDefaultNormalizer } from '@testing-library/react';
+
+    // const students = [
+    //   {id: "01", name: "Swadip", country: "Bangladesh"}, 
+    //   {id: "02", name: "Istiqur", country: "India"} 
+    // ]; 
 
 class Form extends Component {
-  state={
+  state = {
     name: '',
     email: '',
     country: '',
     gender: '',
-    skills: []
+    skills: [],
+    students: [
+      { id: "01", name: "Swadip", country: "Bangladesh" },
+      { id: "02", name: "Istiqur", country: "India" }
+    ]
   }
   
-  changeHandler = event =>{
+  changeHandler = event => {
     if (event.target.type === 'checkbox') {
       if (event.target.checked) {
         this.setState({
@@ -19,25 +29,32 @@ class Form extends Component {
       } else {
         this.setState({
           ...this.state,
-          skills: this.state.skills.filter( skill => skill !== event.target.value )
+          skills: this.state.skills.filter(skill => skill !== event.target.value)
         })
-        
+
       }
     }
-    else{
+    else {
       this.setState({
         [event.target.name]: event.target.value
       })
     }
   }
 
-  submitHandler = event =>{
+  submitHandler = event => {
     event.preventDefault()
-    console.log(this.state);
-    
-  } 
+    console.log(this.state)
+    // const {students} = this.state;
+    const students = [...this.state.students]; 
+    const { name, email, country} = this.state;
+    students.push({name, email, country});
+    this.setState({ students, name: '', email: ''}) 
+  }
 
   render() {
+
+    const {students} = this.state;
+
     return (
       <div className='container'>
         <div className='row'>
@@ -163,19 +180,31 @@ class Form extends Component {
             </div>
             <button type='submit' className='btn btn-primary my-3'> Submit </button>
           </form>
-          <table className='table'>
+          <table className='table table-bordered'>
             <thead>
               <tr>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Country</td>
-                <td>Gender</td>
-                <td>Skills</td>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Country</th>
+                <th>Gender</th>
+                <th>Skills</th>
               </tr>
-              <tbody>
-
-              </tbody>
             </thead>
+              <tbody>
+              {
+                students.map((student, idx) => (
+                  <tr key={idx}>
+                    <td>{idx+1}</td>
+                    <td>{student.name}</td>
+                    <td>{student.email}</td>
+                    <td>{student.country}</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                ))
+              } 
+              </tbody>
           </table>
         </div>
       </div>

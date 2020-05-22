@@ -6,37 +6,39 @@ import { getDefaultNormalizer } from '@testing-library/react';
     //   {id: "02", name: "Istiqur", country: "India"} 
     // ]; 
 
-class Form extends Component {
+class Formdemo extends Component {
   state = {
-    data: {
-      skills: [] 
-    },
+    name: '',
+    email: '',
+    country: '',
+    gender: '',
+    skills: [],
     students: [
       { id: "01", name: "Swadip", country: "Bangladesh" },
       { id: "02", name: "Istiqur", country: "India" }
     ]
   }
   
+  changeHandler = event => {
+    if (event.target.type === 'checkbox') {
+      if (event.target.checked) {
+        this.setState({
+          ...this.state,
+          skills: this.state.skills.concat(event.target.value)
+        })
+      } else {
+        this.setState({
+          ...this.state,
+          skills: this.state.skills.filter(skill => skill !== event.target.value)
+        })
 
-
-  changeHandler = ({target}) => {
-    // const {target} = event;  
-    const data = {...this.state.data};    
-    if (target.type === 'checkbox') {
-      if (target.checked) {
-        data.skills =  data.skills.concat(target.value)       
-        // this.setState({data});  
-      } 
-      else {
-        data.skills = data.skills.filter(skill => skill !== target.value)
-        // this.setState({ data }); 
       }
     }
     else {
-      data[target.name] = target.value;
-      // this.setState({data})
+      this.setState({
+        [event.target.name]: event.target.value
+      })
     }
-    this.setState({data})
   }
 
   submitHandler = event => {
@@ -210,4 +212,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default Formdemo;

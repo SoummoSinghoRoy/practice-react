@@ -49,29 +49,32 @@ class PostData extends Component {
 
   render() {
     return (
-      <form
-        onSubmit = { this.submitHandler } 
-        className='container col-md-6'>
+      <div className='container col-md-6 py-2'>
+        <h5 className='text-center'>Data Collector</h5>
+        <form
+          onSubmit = { this.submitHandler } 
+        >
           { this.state.isSubmited && <p className='text-success'>Successflly! Sent Your Data....</p> }
           { this.state.error && <p className='text-warning'> Something Wrong....</p> }
-        <input 
-          type="text"
-          className='form-control'
-          placeholder='Enter Your title'
-          value= { this.state.title }
-          name= 'title'
-          onChange = { this.changeHandler }
-        />
-        <textarea 
-          type="text"
-          className='form-control'
-          placeholder='Enter Your Short Story'
-          value= { this.state.body }
-          name= 'body'
-          onChange = { this.changeHandler }
-        />
-        <button type="submit" className='btn btn-primary'>Submit</button>
-      </form>
+          <input 
+            type="text"
+            className='form-control'
+            placeholder='Enter Your title'
+            value= { this.state.title }
+            name= 'title'
+            onChange = { this.changeHandler }
+          />
+          <textarea 
+            type="text"
+            className='form-control'
+            placeholder='Enter Your Short Story'
+            value= { this.state.body }
+            name= 'body'
+            onChange = { this.changeHandler }
+          />
+          <button type="submit" className='btn btn-primary'>Submit</button>
+        </form>
+      </div>
     )
   }
 }
